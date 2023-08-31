@@ -1,0 +1,38 @@
+{
+  "name": "pixaProject",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "build": "vite build",
+    "test:unit": "vue-cli-service test:unit",
+    "test:vite": "vite test",
+    "lint": "eslint . --fix --ignore-path .gitignore",
+    "dev": "vite",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@mdi/font": "7.0.96",
+    "core-js": "^3.29.0",
+    "pinia": "^2.0.0",
+    "roboto-fontface": "*",
+    "vue": "^3.2.0",
+    "vue-router": "^4.0.0",
+    "vuetify": "^3.0.0",
+    "webfontloader": "^1.0.0"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^4.0.0",
+    "@vue/cli-plugin-unit-mocha": "~5.0.0",
+    "@vue/test-utils": "^2.4.1",
+    "chai": "^4.2.0",
+    "eslint": "^8.37.0",
+    "eslint-plugin-vue": "^9.3.0",
+    "resize-observer-polyfill": "^1.5.1",
+    "rollup-plugin-css-only": "^4.3.0",
+    "rollup-plugin-terser": "^7.0.2",
+    "sass": "^1.60.0",
+    "vite": "^4.2.0",
+    "vite-plugin-vuetify": "^1.0.0",
+    "vitest": "^0.34.3"
+  }
+}
