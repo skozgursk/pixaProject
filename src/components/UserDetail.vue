@@ -1,56 +1,69 @@
 <template>
   <v-navigation-drawer
+    class="px-5 px-3"
     v-bind:width="width"
     v-model="userDrawer"
     temporary
   >
     <template v-if="userDetail">
-      <v-list-item
-        class="my-6"
-        :prepend-avatar="userDetail.image"
-        :title="userDetail.name"
-      >
-        <template v-slot:append>
-          <v-btn icon @click="changeTargetUserStatus(false)">
-            <v-icon >mdi-arrow-left</v-icon>
-          </v-btn>
-        </template>
-      </v-list-item>
-
-      <v-divider></v-divider>
-
-      <v-list nav>
-        <v-list-item prepend-icon="mdi-phone" :title="userDetail.phone"></v-list-item>
-        <v-list-item :title="userDetail.about"></v-list-item>
-      </v-list>
-
-
-      <h4 class="px-3 my-6">Paylaşılan Medya</h4>
-      <v-row class="px-3">
-        <v-col
-          v-for="(item, i) in userDetail.sharedMedia"
-          :key="i"
-          cols="12"
-          md="6"
-        >
+      <v-card class="d-flex flex-column justify-center align-center mt-5 pa-2">
+        <v-avatar
+          class="my-5"
+          color="surface-variant" size="100">
           <v-img
-            :src="item"
-            cover
-            height="150"
-            class="text-right pa-2"
-          >
-          </v-img>
-        </v-col>
-      </v-row>
+            v-if="userDetail.image"
+            alt="Avatar"
+            :src="userDetail.image"
+          ></v-img>
+        </v-avatar>
 
+        <h4>
+          {{userDetail.name}}
+        </h4>
+        <v-btn
 
-      <h4 class="px-3 my-6">Oluşturulmuş gruplar</h4>
+          class="position-absolute back-button"
+          icon @click="changeTargetUserStatus(false)">
+          <v-icon >mdi-arrow-left</v-icon>
+        </v-btn>
+      </v-card>
 
-      <v-list density="compact" nav>
-        <v-list-item v-for="ugn in userDetail.userGroupsNames">
+      <v-card class="d-flex flex-row justify-start align-center mt-5 pa-5">
+        <v-icon class="mr-4">mdi-phone</v-icon> {{userDetail.phone}}
+      </v-card>
+      <v-card class="d-flex flex-row justify-center align-center mt-5 pa-5">
+        {{userDetail.about}}
+      </v-card>
+
+      <v-card class="d-flex flex-column justify-center align-center mt-5 pa-2">
+        <h4 class="px-3 my-3">Paylaşılan Medya</h4>
+        <div class="w-100">
+          <v-row class="px-3">
+            <v-col
+              v-for="(item, i) in userDetail.sharedMedia"
+              :key="i"
+              cols="12"
+              md="6"
+            >
+              <v-img
+                :src="item"
+                cover
+                height="150"
+                class="text-right pa-2"
+              >
+              </v-img>
+            </v-col>
+          </v-row>
+        </div>
+      </v-card>
+
+      <v-card class="d-flex flex-column justify-center align-center mt-5 pa-3">
+        <h4 class="px-3 my-2">Ortak gruplar</h4>
+        <p v-for="ugn in userDetail.userGroupsNames">
           {{ugn}}
-        </v-list-item>
-      </v-list>
+        </p>
+      </v-card>
+
 
     </template>
 
@@ -79,5 +92,13 @@ export default {
 </script>
 
 <style scoped>
-
+.v-navigation-drawer {
+  background-color: rgb(236, 236, 236);
+}
+.back-button {
+  top: 5px;
+  right: 5px;
+  border: unset!important;
+  box-shadow: unset!important;
+}
 </style>

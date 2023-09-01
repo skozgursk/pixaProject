@@ -1,5 +1,7 @@
 <template>
-  <div class="messages-container">
+  <div
+    :class="pageLoading ? 'page-loading' : ''"
+    class="messages-container">
     <template v-if="$route.params.id && userDetail">
       <template v-if="pageLoading">
         <div class="display-flex justify-center align-center h-100 w-100">
@@ -52,12 +54,15 @@
           :items="messages"
         >
           <template v-slot:default="{ item }">
-            <div
-              :class="item.sender === 1 ? 'message-right' : 'message-left'"
+            <div :class="item.sender === 1 ? 'message-right' : 'message-left'"
               class="my-2">
-              <v-chip
+              <div
                 v-html="highlightText(item.text)"
-                :color="item.sender === 1 ? 'primary' : 'secondary'"></v-chip>
+                :class="item.sender === 1 ? 'primary' : 'secondary'"
+                class="chat-balloon">
+
+              </div>
+
             </div>
 
           </template>
@@ -80,6 +85,20 @@
   </div>
 </template>
 <style lang="scss">
+  .chat-balloon {
+    &.secondary {
+      background-color: #19ea065F !important;
+      color: #1450e0 !important;
+    }
+    &.primary {
+      background-color: rgba(6, 234, 215, 0.37) !important;
+      color: #1450e0 !important;
+    }
+    max-width: 250px!important;
+    border-radius: 10px;
+    padding: 4px 10px;
+    overflow: hidden;
+  }
   .message-left, .message-right {
     display: flex;
     align-items: center;
@@ -96,9 +115,11 @@
   .messages-container {
     height: calc(100vh - 72px)!important;
     border-radius: 20px;
-    display: grid;
-    grid-template-rows: 60px 1fr 60px;
 
+    &:not(.page-loading) {
+      display: grid;
+      grid-template-rows: 60px 1fr 60px;
+    }
     .v-text-field {
       .v-input__slot::after {
         border-bottom: none !important;

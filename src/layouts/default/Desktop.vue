@@ -10,7 +10,7 @@
       >
         {{snackbarErrorMessage}}
       </v-snackbar>
-      <v-container  class="h-100">
+      <v-container  class="h-100 mx-0">
         <template v-if="pageLoading">
           <div class="display-flex justify-center align-center h-100 w-100">
             <v-progress-circular  :size="128" :width="12" indeterminate></v-progress-circular>
@@ -22,8 +22,9 @@
             <v-row>
               <v-col
                 :class="$route.params.id ? 'hidden-sm hidden-xs' : ''"
-                lg="3"
-                xl="3"
+                class="border-e-lg"
+                lg="4"
+                xl="4"
                 md="4"
                 xxl="3"
                 sm="12"
@@ -33,8 +34,8 @@
               </v-col>
               <v-col
                 :class="!$route.params.id ? 'hidden-sm hidden-xs' : ''"
-                lg="9"
-                xl="9"
+                lg="8"
+                xl="8"
                 md="8"
                 xxl="9"
                 sm="12"
